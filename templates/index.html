@@ -21,31 +21,25 @@
 
     <p>Here you can see all existing tasks</p>
 
-    <div class="container">
+    <ul>
     {% for task in tasks %}
-        <div class="row">
-        <div class="col-sm">
-            {{ task[1] }}
-        </div>
+        <li>({{task[0]}}) {{ task[1] }}
         {% if task[2] == 1 %}
-            <div class="col-sm">
-                {{ "Urgent" }}
-            </div>
+            -- Urgent --
             {% else %}
-            <div class="col-sm">
-                {{ "Not Urgent" }}
-            </div>
+            -- Not Urgent --
             {% endif %}
-        <div class="col-sm"><a href="{{ url_for('delete_task',id_task = task[0]) }}">Delete</a></div>
-        </div>
+        <a href="{{ url_for('update_task',id_task = task[0]) }}">Update</a>
+             --
+        <a href="{{ url_for('delete_task',id_task = task[0]) }}">Delete</a>
+        </li>
     {% endfor %}
-
-    </div>
+    </ul>
 
     <form action="{{ url_for('create_task')}}" method="post">
     <p>Insert a new Task:
         <input type = "text" name = "task"/>
-        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <div class="btn-group btn-group-toggle inline" data-toggle="buttons">
         <label class="btn btn-secondary active">
                 <input type="radio" name="options" value="urgent" checked> Urgent
             </label>

@@ -31,9 +31,17 @@ def create_task():
 @app.route('/delete_task/<id_task>')
 def delete_task(id_task):
     tasks = db_interaction.readTasks()
-    db_interaction.removeTask(id_task)
     task = [task for task in tasks if task[0] == id_task]
+    db_interaction.removeTask(id_task)
     return render_template("delete_task.html", task=task)
+
+
+@app.route('/update_task/<id_task>')
+def update_task(id_task):
+    tasks = db_interaction.readTasks()
+    task = [task for task in tasks if task[0] == id_task]
+    db_interaction.removeTask(id_task)
+    return render_template("update_task.html", task=task)
 
 
 if __name__ == '__main__':
