@@ -29,12 +29,24 @@
             {% else %}
             -- Not Urgent --
             {% endif %}
-        <a href="{{ url_for('update_task',id_task = task[0]) }}">Update</a>
-             --
-        <a href="{{ url_for('delete_task',id_task = task[0]) }}">Delete</a>
         </li>
     {% endfor %}
     </ul>
+
+    <form action="{{ url_for('create_task')}}" method="post">
+    <p>Insert a new Task:
+        <input type = "text" name = "task"/>
+        <div class="btn-group btn-group-toggle inline" data-toggle="buttons">
+        <label class="btn btn-secondary active">
+                <input type="radio" name="options" value="urgent" checked> Urgent
+            </label>
+            <label class="btn btn-secondary">
+                <input type="radio" name="options" value="not-urgent" > Not Urgent
+             </label>
+        </div>
+        <input type = "submit" class="btn btn-primary" value = "Enter"/>
+    </p>
+    </form>
 
     <form action="{{ url_for('create_task')}}" method="post">
     <p>Insert a new Task:

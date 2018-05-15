@@ -6,7 +6,23 @@
 </head>
 <body>
 
-    <h1>Insertion of the new task succeeded!</h1>
+    <h1>Insert a new task:</h1>
+
+    <form action="{{ url_for('/tasks')}}" method="post">
+    <p>Insert a new Task:
+        <input type = "text" name = "task"/>
+        <div class="btn-group btn-group-toggle inline" data-toggle="buttons">
+        <label class="btn btn-secondary active">
+                <input type="radio" name="options" value="urgent" checked> Urgent
+            </label>
+            <label class="btn btn-secondary">
+                <input type="radio" name="options" value="not-urgent" > Not Urgent
+             </label>
+        </div>
+        <input type = "submit" class="btn btn-primary" value = "Enter"/>
+    </p>
+    </form>
+
 
 <p>Go back to the <a href="{{ url_for('index') }}">Project Page</a></p>
 
