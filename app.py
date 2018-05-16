@@ -84,14 +84,16 @@ def UpdateTask():   #update[0] = tod_o and update[1]= urgency
 
 @app.route('/tasks/<id_task>')
 def GetTask(id_task):
+    print("retrieve task: "+str(id_task))
     task = db_interaction.retrieveTask(int(id_task))
+    print("task retrieved")
     print(task)
-    if len(task)==0:
-        return jsonify(task[0])
-    else:
-        response = jsonify({"message":"duplicated task with the id "+id_task})
-        response.status_code = 404
-        return response
+    #if len(task)==0:
+    return jsonify(task[0])
+    # else:
+    #     response = jsonify({"message":"duplicated task with the id "+id_task})
+    #     response.status_code = 404
+    #     return response
 
 
 if __name__ == '__main__':

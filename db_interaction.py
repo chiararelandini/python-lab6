@@ -8,11 +8,11 @@ def readTasks():
     cursor = connection.cursor()
     cursor.execute(sql)
     result = cursor.fetchall()
-    tasks = []
-    for task in result:
-        print(task[1])
-        tasks.append(task[1])
-    print(result)
+    #tasks = []
+    #for task in result:
+        #print(task[1])
+        #tasks.append(task[1])
+    #print(result)
     cursor.close()
     connection.close()
     return result
@@ -62,11 +62,12 @@ def updateTask(task):
 
 def retrieveTask(id_task):
     print("id = "+ str(id_task))
-    sql = "SELECT * from task WHERE id=%"
+    sql = "SELECT * from task WHERE id=%s"
     connection = pymysql.connect(user="root", password="root", host="localhost", database="todomanager")
     cursor = connection.cursor()
     cursor.execute(sql, (id_task,))
     result = cursor.fetchall()
+    print(result)
     cursor.close()
     connection.close()
     return result
