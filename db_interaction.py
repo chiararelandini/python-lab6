@@ -42,7 +42,9 @@ def removeTask(id_task):
     connection.close()
 
 
-def updateTask(task):
+def updateTask(id_task, task):
+    print("update...")
+    print(task)
     connection = pymysql.connect(user="root", password="root", host="localhost", database="todomanager")
     cursor = connection.cursor()
     if len(task)==3:
@@ -51,23 +53,23 @@ def updateTask(task):
             urgency = True
         else:
             urgency = False
-        cursor.execute(sql, (task[1], urgency, task[0]))
+        cursor.execute(sql, (task[1], urgency, id_task))
     else:
         sql = "UPDATE task SET description=%s WHERE id=%s"
-        cursor.execute(sql, (task[1], task[0]))
+        cursor.execute(sql, (task[1], id_task))
     connection.commit()
     cursor.close()
     connection.close()
 
 
-def retrieveTask(id_task):
-    print("id = "+ str(id_task))
+def retrieveTask(id_task):      #should change the result of urgency from Bool (int) to string "urgent" or "not urgent"
+    #print("id = "+ str(id_task))
     sql = "SELECT * from task WHERE id=%s"
     connection = pymysql.connect(user="root", password="root", host="localhost", database="todomanager")
     cursor = connection.cursor()
     cursor.execute(sql, (id_task,))
     result = cursor.fetchall()
-    print(result)
+    #print(result)
     cursor.close()
     connection.close()
     return result

@@ -17,7 +17,7 @@ def queryAPI():
     # requests.post(base_url + '/tasks', json=new_task)
 
     #remove a task
-    # num = 8
+    # num = 7
     # requests.delete(base_url+ '/tasks/' + str(num), json=num)
 
     #update a task ----- NOT WORKING !!!!
@@ -26,10 +26,10 @@ def queryAPI():
     # update = [id, description]
     # requests.put(base_url+"/tasks/"+str(id), data=update, json=id)
     #
-    # id = 2
-    # description = "fare la spesa"
-    # update = [id, description, "urgent"]
-    # requests.put(base_url + "/tasks/" + str(id), data=None, json=update)
+    id = 2
+    description = "fare la spesa"
+    update = [id, description, "not urgent"]
+    requests.put(base_url + "/tasks/" + str(id), data=None, json={"update": update, "id_task": str(id)})
 
     #retrieve a task
     id = 2

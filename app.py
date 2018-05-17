@@ -40,7 +40,7 @@ def CreateTask():
 
 
 @app.route('/tasks/<id_task>', methods=['DELETE'])
-def DeleteTask(id_task):
+def DeleteTask(id_task):        #should check if the task exists before removing (db does it automatically ?)
     # print("DELETEEEE")
     # tasks = db_interaction.readTasks()
     # print(tasks)
@@ -66,7 +66,7 @@ def DeleteTask(id_task):
 
 
 @app.route('/tasks/<id_task>', methods=['PUT'])
-def UpdateTask():   #update[0] = tod_o and update[1]= urgency
+def UpdateTask(id_task):   #update[0] = tod_o and update[1]= urgency
     # tasks = db_interaction.readTasks()
     # task = [task for task in tasks if task[0] == id_task]
     # # update task
@@ -77,17 +77,19 @@ def UpdateTask():   #update[0] = tod_o and update[1]= urgency
     #     response = jsonify({"message": "task " + id_task + " not found!"})  # jsonify fake json with error message
     #     response.status_code = 404  # http message
     #     return response
-    update = request.data
-    db_interaction.updateTask(update[0], update)
+    update = request.json
+    print(update)
+    task = update['update']
+    db_interaction.updateTask(int(id_task), task)
     return jsonify(update)
 
 
 @app.route('/tasks/<id_task>')
 def GetTask(id_task):
-    print("retrieve task: "+str(id_task))
+    # print("retrieve task: "+str(id_task))
     task = db_interaction.retrieveTask(int(id_task))
-    print("task retrieved")
-    print(task)
+    # print("task retrieved")
+    # print(task)
     #if len(task)==0:
     return jsonify(task[0])
     # else:
